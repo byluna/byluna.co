@@ -1,0 +1,14 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Luke Carbis -- Lead Engineer -- @lukecarbis
+
+# THANKS
+
+    Rob Stinson
+
+# TECHNOLOGY COLOPHON
+
+    CSS3, HTML5

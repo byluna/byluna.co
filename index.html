@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>𝘭𝘶𝘯𝘢</title>
+
+		<meta name="description" content="A world-class team of WordPress contributors and engineers.">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#ffffff">
+
+		<meta property="og:title" content="luna">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://byluna.co/">
+		<meta property="og:image" content="https://byluna.co/tile-wide.png">
+
+		<style>
+			:root {
+				--black: black;
+				--white: white;
+				--gray: gray;
+				--blue: blue;
+			}
+
+			body {
+				font-family: Courier, monospace;
+				font-size: 13px;
+				margin: 0;
+			}
+
+			 h1 {
+				 font-size: 1em;
+				 margin: 1em 0;
+				 font-weight: bold;
+				 font-style: italic;
+			 }
+
+			.wrapper {
+				background: var(--white);
+				color: var(--black);
+				min-height: 100vh;
+			}
+
+			.column {
+				max-width: 360px;
+				margin: 0 auto;
+				padding: 10px 0;
+			}
+
+			.flex {
+				display: flex;
+			}
+
+			.justify-between {
+				justify-content: space-between;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			.text-justify {
+				text-align: justify;
+			}
+
+			.select {
+				-webkit-user-select: all;
+				user-select: all;
+			}
+
+			#color-mode {
+				position: absolute;
+				top: -2em;
+				left: -2em;
+			}
+
+			#color-mode:checked ~ * {
+				--black: white;
+				--white: black;
+				--blue: mediumslateblue;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				#color-mode:not(:checked) ~ * {
+					--black: white;
+					--white: black;
+					--blue: mediumslateblue;
+				}
+				#color-mode:checked ~ * {
+					--black: black;
+					--white: white;
+					--blue: blue;
+				}
+			}
+
+			#color-toggle {
+				color: var(--blue);
+				cursor: pointer;
+			}
+
+			#color-mode:focus ~ * #color-toggle {
+				border-bottom: 1px solid var(--blue);
+			}
+
+			#color-toggle:before {
+				content: "☐";
+				margin-right: 6px;
+				font-size: 18px;
+				line-height: 0;
+				position: relative;
+				top: 1px;
+			}
+
+			#color-mode:checked ~ * #color-toggle:before {
+				content: "☒";
+			}
+
+			@media (prefers-color-scheme: dark) {
+				#color-toggle:before {
+					content: "☒";
+				}
+
+				#color-mode:checked ~ * #color-toggle:before {
+					content: "☐";
+				}
+			}
+
+			.gray {
+				color: var(--gray);
+			}
+
+			.blue {
+				color: var(--blue);
+			}
+
+			#color-mode:checked ~ * .blue {
+				--blue: mediumslateblue;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				#color-mode:not(:checked) ~ * .blue {
+					--blue: mediumslateblue;
+				}
+				#color-mode:checked ~ * .blue {
+					--blue: blue;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<input id="color-mode" type="checkbox" />
+		<div class="wrapper">
+			<div class="column">
+				<div class="flex justify-between">
+					<p class="gray">https://byluna.co/</p>
+					<p><label id="color-toggle" for="color-mode" tabindex="-1">Dark Mode</label></p>
+				</div>
+
+				<br />
+
+				<div class="text-center">
+					<h1>luna</h1>
+				</div>
+
+				<p class="text-justify">
+					Hello, world. We're <em>luna</em> — a world-class team of WordPress contributors and engineers, ready to extend your development capacity.
+				</p>
+
+				<p class="text-justify">
+					We know WordPress. Inside and out. And it shows in our work. All our code passes the WordPress code quality standards, and we don't commit a single line unless it's been manually reviewed.
+				</p>
+
+				<p class="text-justify">
+					If you've got a project in mind, we'd love to help you make it happen.
+				</p>
+
+				<p class="blue select">
+					hello&#64;byluna.co
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

@@ -5,12 +5,13 @@
 		<title>𝘭𝘶𝘯𝘢</title>
 
 		<meta name="description" content="A world-class team of WordPress contributors and engineers.">
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" id="light-theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+		<meta name="theme-color" id="dark-theme-color" content="#000000" media="(prefers-color-scheme: dark)">
 
 		<meta property="og:title" content="luna">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://byluna.co/">
-		<meta property="og:image" content="https://byluna.co/tile-wide.png">
 
 		<style>
 			:root {
@@ -29,16 +30,6 @@
 				font-size: 13px;
 				margin: 0;
 				line-height: 1.5em;
-			}
-
-			body:has(#color-mode:checked) {
-				background: var(--black);
-			}
-
-			@media (prefers-color-scheme: dark) {
-				body:has(#color-mode:checked) {
-					background: var(--white);
-				}
 			}
 
 			 h1 {
@@ -161,8 +152,21 @@
 		</style>
 	</head>
 
-	<body>
-		<input id="color-mode" type="checkbox" />
+	<body onload="
+		const darkMode = localStorage.getItem('darkMode') === 'true';
+		document.getElementById('color-mode').checked = darkMode;
+	">
+		<input id="color-mode" type="checkbox" onchange="
+			const darkMode = document.getElementById('color-mode').checked;
+			localStorage.setItem( 'darkMode', darkMode );
+			if ( darkMode ) {
+				document.getElementById('light-theme-color').setAttribute('content', '#000000');
+				document.getElementById('dark-theme-color').setAttribute('content', '#ffffff');
+			} else {
+				document.getElementById('light-theme-color').setAttribute('content', '#ffffff');
+				document.getElementById('dark-theme-color').setAttribute('content', '#000000');
+			}
+		" />
 
 		<div class="wrapper">
 			<div class="column">

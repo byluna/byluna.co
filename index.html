@@ -31,6 +31,16 @@
 				line-height: 1.5em;
 			}
 
+			body:has(#color-mode:checked) {
+				background: var(--black);
+			}
+
+			@media (prefers-color-scheme: dark) {
+				body:has(#color-mode:checked) {
+					background: var(--white);
+				}
+			}
+
 			 h1 {
 				 font-size: 1em;
 				 margin: 1em 0;
@@ -45,7 +55,7 @@
 			}
 
 			.column {
-				max-width: 360px;
+				max-width: 400px;
 				margin: 0 auto;
 				padding: 10px 1em;
 			}
@@ -153,6 +163,7 @@
 
 	<body>
 		<input id="color-mode" type="checkbox" />
+
 		<div class="wrapper">
 			<div class="column">
 				<div class="flex justify-between">

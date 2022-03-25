@@ -34,13 +34,6 @@
 				min-height: 100%;
 			}
 
-			body.dark {
-				--black: white;
-				--white: black;
-				--gray: gray;
-				--blue: mediumslateblue;
-			}
-
 			 h1 {
 				 font-size: 1em;
 				 margin: 1em 0;
@@ -51,7 +44,7 @@
 			.column {
 				max-width: 400px;
 				margin: 0 auto;
-				padding: 10px 1em;
+				padding: 3em 1em 1em;
 			}
 
 			.flex {
@@ -60,10 +53,6 @@
 
 			.justify-between {
 				justify-content: space-between;
-			}
-
-			.text-center {
-				text-align: center;
 			}
 
 			.text-justify {
@@ -83,60 +72,17 @@
 			.blue {
 				color: var(--blue);
 			}
-
-			#color-toggle {
-				color: var(--blue);
-				cursor: pointer;
-				border: none;
-				background: none;
-				font-family: Courier, monospace;
-				font-size: 13px;
-				padding: 0;
-			}
 		</style>
-
-		<script type="text/javascript">
-			const prepareColorMode = () => {
-				if ( null === localStorage.getItem('colorMode') ) {
-					const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-					localStorage.setItem('colorMode', darkMode ? 'dark' : 'light');
-				}
-
-				setColorMode( localStorage.getItem('colorMode') )
-			}
-
-			const toggleColorMode = () => {
-				if ( 'dark' === localStorage.getItem('colorMode') ) {
-					setColorMode('light');
-				} else {
-					setColorMode('dark');
-				}
-			}
-
-			const setColorMode = ( colorMode ) => {
-				const themeColor = 'dark' === colorMode ? '#000000' : '#ffffff';
-				const themeLabel = 'dark' === colorMode ? 'Dark Mode' : 'Light Mode';
-				localStorage.setItem( 'colorMode', colorMode );
-				document.getElementById('theme-color').setAttribute('content', themeColor);
-				document.getElementById('color-toggle').innerText = themeLabel;
-				document.body.className = '';
-				document.body.classList.add(colorMode);
-			}
-		</script>
 	</head>
 
-	<body onload="prepareColorMode()">
+	<body>
 		<div class="column">
 			<div class="flex justify-between">
+				<h1>by luna</h1>
 				<p class="gray">https://byluna.co/</p>
-				<p><button id="color-toggle" onclick="toggleColorMode()">Dark Mode</button></p>
 			</div>
 
 			<br />
-
-			<div class="text-center">
-				<h1>by luna</h1>
-			</div>
 
 			<p class="text-justify">
 				Hello, world. We're <em>by luna</em> — a world-class team of WordPress contributors and engineers, ready to extend your development capacity.
@@ -149,6 +95,8 @@
 			<p class="text-justify">
 				If you've got a project in mind, we'd love to help you make it happen.
 			</p>
+
+			<br />
 
 			<p class="blue select">
 				hello&#64;byluna.co

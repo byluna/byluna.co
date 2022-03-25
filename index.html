@@ -16,8 +16,15 @@
 			:root {
 				--black: black;
 				--white: white;
-				--gray: gray;
 				--blue: blue;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				:root {
+					--black: white;
+					--white: black;
+					--blue: cornflowerblue;
+				}
 			}
 
 			html, body {
@@ -65,10 +72,6 @@
 				cursor: pointer;
 			}
 
-			.gray {
-				color: var(--gray);
-			}
-
 			.blue {
 				color: var(--blue);
 			}
@@ -77,10 +80,7 @@
 
 	<body>
 		<div class="column">
-			<div class="flex justify-between">
-				<h1>by luna</h1>
-				<p class="gray">https://byluna.co/</p>
-			</div>
+			<h1>by luna</h1>
 
 			<br />
 

@@ -6,8 +6,7 @@
 
 		<meta name="description" content="A world-class team of WordPress contributors and engineers.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="theme-color" id="light-theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-		<meta name="theme-color" id="dark-theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+		<meta name="theme-color" id="theme-color" content="#ffffff">
 
 		<meta property="og:title" content="luna">
 		<meta property="og:type" content="website">
@@ -30,6 +29,16 @@
 				font-size: 13px;
 				margin: 0;
 				line-height: 1.5em;
+				background: var(--white);
+				color: var(--black);
+				min-height: 100%;
+			}
+
+			body.dark {
+				--black: white;
+				--white: black;
+				--gray: gray;
+				--blue: mediumslateblue;
 			}
 
 			 h1 {
@@ -38,12 +47,6 @@
 				 font-weight: bold;
 				 font-style: italic;
 			 }
-
-			.wrapper {
-				background: var(--white);
-				color: var(--black);
-				min-height: 100%;
-			}
 
 			.column {
 				max-width: 400px;
@@ -70,63 +73,7 @@
 			.select {
 				-webkit-user-select: all;
 				user-select: all;
-			}
-
-			#color-mode {
-				position: absolute;
-				top: -2em;
-				left: -2em;
-			}
-
-			#color-mode:checked ~ * {
-				--black: white;
-				--white: black;
-				--blue: mediumslateblue;
-			}
-
-			@media (prefers-color-scheme: dark) {
-				#color-mode:not(:checked) ~ * {
-					--black: white;
-					--white: black;
-					--blue: mediumslateblue;
-				}
-				#color-mode:checked ~ * {
-					--black: black;
-					--white: white;
-					--blue: blue;
-				}
-			}
-
-			#color-toggle {
-				color: var(--blue);
 				cursor: pointer;
-			}
-
-			#color-mode:focus ~ * #color-toggle {
-				border-bottom: 1px solid var(--blue);
-			}
-
-			#color-toggle:before {
-				content: "☐";
-				margin-right: 6px;
-				font-size: 18px;
-				line-height: 0;
-				position: relative;
-				top: 1px;
-			}
-
-			#color-mode:checked ~ * #color-toggle:before {
-				content: "☒";
-			}
-
-			@media (prefers-color-scheme: dark) {
-				#color-toggle:before {
-					content: "☒";
-				}
-
-				#color-mode:checked ~ * #color-toggle:before {
-					content: "☐";
-				}
 			}
 
 			.gray {
@@ -137,68 +84,75 @@
 				color: var(--blue);
 			}
 
-			#color-mode:checked ~ * .blue {
-				--blue: mediumslateblue;
-			}
-
-			@media (prefers-color-scheme: dark) {
-				#color-mode:not(:checked) ~ * .blue {
-					--blue: mediumslateblue;
-				}
-				#color-mode:checked ~ * .blue {
-					--blue: blue;
-				}
+			#color-toggle {
+				color: var(--blue);
+				cursor: pointer;
+				border: none;
+				background: none;
+				font-family: Courier, monospace;
+				font-size: 13px;
+				padding: 0;
 			}
 		</style>
+
+		<script type="text/javascript">
+			const prepareColorMode = () => {
+				if ( null === localStorage.getItem('colorMode') ) {
+					const darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+					localStorage.setItem('colorMode', darkMode ? 'dark' : 'light');
+				}
+
+				setColorMode( localStorage.getItem('colorMode') )
+			}
+
+			const toggleColorMode = () => {
+				if ( 'dark' === localStorage.getItem('colorMode') ) {
+					setColorMode('light');
+				} else {
+					setColorMode('dark');
+				}
+			}
+
+			const setColorMode = ( colorMode ) => {
+				const themeColor = 'dark' === colorMode ? '#000000' : '#ffffff';
+				const themeLabel = 'dark' === colorMode ? 'Dark Mode' : 'Light Mode';
+				localStorage.setItem( 'colorMode', colorMode );
+				document.getElementById('theme-color').setAttribute('content', themeColor);
+				document.getElementById('color-toggle').innerText = themeLabel;
+				document.body.className = '';
+				document.body.classList.add(colorMode);
+			}
+		</script>
 	</head>
 
-	<body onload="
-		const darkMode = localStorage.getItem('darkMode') === 'true';
-		const colorModeInput = document.getElementById('color-mode');
-		colorModeInput.checked = darkMode;
-		colorModeInput.dispatchEvent( new Event('change') );
-	">
-		<input id="color-mode" type="checkbox" onchange="
-			const darkMode = document.getElementById('color-mode').checked;
-			localStorage.setItem( 'darkMode', darkMode );
-			if ( darkMode ) {
-				document.getElementById('light-theme-color').setAttribute('content', '#000000');
-				document.getElementById('dark-theme-color').setAttribute('content', '#ffffff');
-			} else {
-				document.getElementById('light-theme-color').setAttribute('content', '#ffffff');
-				document.getElementById('dark-theme-color').setAttribute('content', '#000000');
-			}
-		" />
-
-		<div class="wrapper">
-			<div class="column">
-				<div class="flex justify-between">
-					<p class="gray">https://byluna.co/</p>
-					<p><label id="color-toggle" for="color-mode" tabindex="-1">Dark Mode</label></p>
-				</div>
-
-				<br />
-
-				<div class="text-center">
-					<h1>by luna</h1>
-				</div>
-
-				<p class="text-justify">
-					Hello, world. We're <em>by luna</em> — a world-class team of WordPress contributors and engineers, ready to extend your development capacity.
-				</p>
-
-				<p class="text-justify">
-					We know WordPress. Inside and out. And it shows in our work. All our code passes the WordPress code quality standards, and we don't commit a single line unless it's been manually reviewed.
-				</p>
-
-				<p class="text-justify">
-					If you've got a project in mind, we'd love to help you make it happen.
-				</p>
-
-				<p class="blue select">
-					hello&#64;byluna.co
-				</p>
+	<body onload="prepareColorMode()">
+		<div class="column">
+			<div class="flex justify-between">
+				<p class="gray">https://byluna.co/</p>
+				<p><button id="color-toggle" onclick="toggleColorMode()">Dark Mode</button></p>
 			</div>
+
+			<br />
+
+			<div class="text-center">
+				<h1>by luna</h1>
+			</div>
+
+			<p class="text-justify">
+				Hello, world. We're <em>by luna</em> — a world-class team of WordPress contributors and engineers, ready to extend your development capacity.
+			</p>
+
+			<p class="text-justify">
+				We know WordPress. Inside and out. And it shows in our work. All our code passes the WordPress code quality standards, and we don't commit a single line unless it's been manually reviewed.
+			</p>
+
+			<p class="text-justify">
+				If you've got a project in mind, we'd love to help you make it happen.
+			</p>
+
+			<p class="blue select">
+				hello&#64;byluna.co
+			</p>
 		</div>
 	</body>
 </html>

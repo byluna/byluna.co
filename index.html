@@ -154,7 +154,9 @@
 
 	<body onload="
 		const darkMode = localStorage.getItem('darkMode') === 'true';
-		document.getElementById('color-mode').checked = darkMode;
+		const colorModeInput = document.getElementById('color-mode');
+		colorModeInput.checked = darkMode;
+		colorModeInput.dispatchEvent( new Event('change') );
 	">
 		<input id="color-mode" type="checkbox" onchange="
 			const darkMode = document.getElementById('color-mode').checked;
